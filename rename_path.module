@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * Implements hook_url_inbound_alter().
+ */
+function sorelle_ronco_customs_url_outbound_alter(&$path, $original_path, $path_language)
+{
+  if (preg_match('|^cart|', $path, $matches)) {
+    $path = 'shopping-bag';
+  }
+}
+
+
+/**
+ * Implements hook_url_inbound_alter().
+ */
+function sorelle_ronco_customs_url_inbound_alter(&$path, $original_path, $path_language)
+{
+  // In this way I can call /shopping-bag URL
+  if (preg_match('|^shopping-bag|', $path, $matches)) {
+    $path = 'cart';
+  }
+}
